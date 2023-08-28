@@ -1,8 +1,8 @@
 #include <stdint.h>
 #include <stddef.h>
 #include <limine.h>
-#include "lib/memory.h"
-#include "lib/util.h"
+#include "memory.h"
+#include "util.h"
 
 // The Limine requests can be placed anywhere, but it is important that
 // the compiler does not optimise them away, so, usually, they should
