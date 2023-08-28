@@ -1,0 +1,34 @@
+[
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-g",
+      "-O2",
+      "-pipe",
+      "-Wall",
+      "-Wextra",
+      "-std=gnu11",
+      "-ffreestanding",
+      "-fno-stack-protector",
+      "-fno-stack-check",
+      "-fno-lto",
+      "-fPIE",
+      "-m64",
+      "-march=x86-64",
+      "-mabi=sysv",
+      "-mno-80387",
+      "-mno-mmx",
+      "-mno-sse",
+      "-mno-sse2",
+      "-mno-red-zone",
+      "-I.",
+      "-c",
+      "-o",
+      "kernel.c.o",
+      "kernel.c"
+    ],
+    "directory": "/home/vardhan/Projects/owos/kernel",
+    "file": "/home/vardhan/Projects/owos/kernel/kernel.c",
+    "output": "/home/vardhan/Projects/owos/kernel/kernel.c.o"
+  }
+]
