@@ -60,9 +60,9 @@ void terminal_clear(void) {
 void terminal_print_char(int x, int y, char letter) {
     const uint8_t* letter_character = font_get_char(letter);
 
-    for (int j = 0; j < (FONT_CHAR_WIDTH - 1); j++) {
-        for (int i = 0; i < (FONT_CHAR_HEIGHT); i++) {
-            if (letter_character[j] & (1 << i)) {
+    for (int j = 0; j < FONT_CHAR_WIDTH; j++) {
+        for (int i = 0; i < FONT_CHAR_HEIGHT; i++) {
+            if (letter_character[i] & (1 << j)) {
                 terminal_draw_rect( (x + j * FONT_SIZE_MULTIPLIER),  (y + i * FONT_SIZE_MULTIPLIER), FONT_SIZE_MULTIPLIER, FONT_SIZE_MULTIPLIER, TERM_FOREGROUND_COLOR);
             }
         }
@@ -73,7 +73,7 @@ void terminal_print_char(int x, int y, char letter) {
 void terminal_write_string(const char* str) {
     while (*str) {
         if (*str == '\n') {
-            cursor_y += FONT_CHAR_WIDTH * FONT_SIZE_MULTIPLIER + 1;
+            cursor_y += FONT_CHAR_WIDTH * FONT_SIZE_MULTIPLIER;
             cursor_x = 0;
             str++;
             continue;
