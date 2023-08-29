@@ -1,5 +1,5 @@
-#ifndef LIB_UTIL_H
-#define LIB_UTIL_H
+#ifndef UTIL_H
+#define UTIL_H
 
 
 /**
