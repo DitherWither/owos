@@ -13,7 +13,7 @@ void _start(void) {
     terminal_init();
 
     // terminal_draw_diagonal();
-    terminal_write_string("Hello, World!", 0, 0);
+    terminal_write_string("Hello, World!\n\nThis is a new line");
 
     // We're done, just hang...
     hcf();

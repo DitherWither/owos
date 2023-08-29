@@ -16,6 +16,9 @@ static volatile struct limine_framebuffer_request framebuffer_request = {
 
 struct limine_framebuffer *term_fb = NULL;
 
+int cursor_x = 0;
+int cursor_y = 0;
+
 void terminal_init(void) {
     // Ensure we got a framebuffer.
     if (framebuffer_request.response == NULL
@@ -48,6 +51,9 @@ void terminal_clear(void) {
     int height = term_fb->height;
     int width = term_fb->width;
 
+    cursor_x = 0;
+    cursor_y = 0;
+
     terminal_draw_rect(0, 0, height, width, TERM_BACKGROUND_COLOR);
 }
 
@@ -55,7 +61,7 @@ void terminal_print_char(int x, int y, char letter) {
     const uint8_t* letter_character = font_get_char(letter);
 
     for (int j = 0; j < (FONT_CHAR_WIDTH - 1); j++) {
-        for (int i = 0; i < (FONT_CHAR_HEIGHT - 1); i++) {
+        for (int i = 0; i < (FONT_CHAR_HEIGHT); i++) {
             if (letter_character[j] & (1 << i)) {
                 terminal_draw_rect( (x + j * FONT_SIZE_MULTIPLIER),  (y + i * FONT_SIZE_MULTIPLIER), FONT_SIZE_MULTIPLIER, FONT_SIZE_MULTIPLIER, TERM_FOREGROUND_COLOR);
             }
@@ -64,10 +70,17 @@ void terminal_print_char(int x, int y, char letter) {
 
 }
 
-void terminal_write_string(const char* str, int x, int y) {
+void terminal_write_string(const char* str) {
     while (*str) {
-        terminal_print_char(x, y, *str);
+        if (*str == '\n') {
+            cursor_y += FONT_CHAR_WIDTH * FONT_SIZE_MULTIPLIER + 1;
+            cursor_x = 0;
+            str++;
+            continue;
+        }
+
+        terminal_print_char(cursor_x, cursor_y, *str);
         str++;
-        x += FONT_CHAR_WIDTH * FONT_SIZE_MULTIPLIER;
+        cursor_x += FONT_CHAR_WIDTH * FONT_SIZE_MULTIPLIER;
     }
 }
