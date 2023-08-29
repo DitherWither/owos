@@ -1,8 +1,8 @@
 #ifndef TERMINAL_H
 #define TERMINAL_H
 
-#define TERM_FOREGROUND_COLOR 0xffff00
-#define TERM_BACKGROUND_COLOR 0x0000ff
+#define TERM_FOREGROUND_COLOR 0xffffff
+#define TERM_BACKGROUND_COLOR 0x000000
 
 void terminal_init(void);
 void terminal_print_char(int x, int y, char letter);
