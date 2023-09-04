@@ -1,6 +1,7 @@
 #include <stdint.h>
 #include <stddef.h>
 #include <limine.h>
+#include "stdio.h"
 #include "font.h"
 #include "memory.h"
 #include "util.h"
@@ -13,7 +14,7 @@ void _start(void) {
     terminal_init();
 
     // terminal_draw_diagonal();
-    terminal_write_string("Hello, World!\n\nThis is a new line");
+    puts("Hello, World!\n\nThis is a new line");
 
     // We're done, just hang...
     hcf();
