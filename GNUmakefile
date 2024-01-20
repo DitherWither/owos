@@ -47,11 +47,14 @@ limine:
 	git clone https://github.com/limine-bootloader/limine.git --branch=v5.x-branch-binary --depth=1
 	$(MAKE) -C limine CC="$(HOST_CC)"
 
+stb:
+	git clone https://github.com/nothings/stb.git
+
 .PHONY: kernel
 kernel:
 	$(MAKE) -C kernel
 
-$(IMAGE_NAME).iso: limine kernel
+$(IMAGE_NAME).iso: limine stb kernel
 	rm -rf iso_root
 	mkdir -p iso_root
 	cp -v kernel/kernel.elf \
@@ -67,7 +70,7 @@ $(IMAGE_NAME).iso: limine kernel
 	./limine/limine bios-install $(IMAGE_NAME).iso
 	rm -rf iso_root
 
-$(IMAGE_NAME).hdd: limine kernel
+$(IMAGE_NAME).hdd: limine stb kernel
 	rm -f $(IMAGE_NAME).hdd
 	dd if=/dev/zero bs=1M count=0 seek=64 of=$(IMAGE_NAME).hdd
 	parted -s $(IMAGE_NAME).hdd mklabel gpt
@@ -94,5 +97,5 @@ clean:
 
 .PHONY: distclean
 distclean: clean
-	rm -rf limine ovmf
+	rm -rf limine ovmf stb
 	$(MAKE) -C kernel distclean

@@ -1,6 +1,6 @@
-#include "terminal.h"
-#include "font.h"
-#include "util.h"
+#include <terminal.h>
+#include <font.h>
+#include <util.h>
 #include <limine.h>
 #include <stdint.h>
 #include <stddef.h>

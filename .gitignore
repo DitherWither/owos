@@ -1,5 +1,6 @@
 /limine
 /ovmf
+/stb
 *.iso
 *.hdd
 .cache

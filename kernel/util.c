@@ -1,4 +1,4 @@
-#include "util.h"
+#include <util.h>
 
 void hcf(void) {
     asm ("cli");
